@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
@@ -65,16 +67,15 @@ public class User {
 
         @CreationTimestamp
         @Column(updatable = false)
-        private LocalDateTime createdAt;
+        private LocalDateTime createdDate;
 
         @UpdateTimestamp
-        private LocalDateTime updatedAt;
+        private LocalDateTime updatedDate;
 
-        public User(String userName, String email, String password, Role role) {
+        public User(String userName, String email, String password) {
                 this.userName = userName;
                 this.email = email;
                 this.password = password;
-                this.role = role;
         }
 
 }
